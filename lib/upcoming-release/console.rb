@@ -1,4 +1,7 @@
 class Console
+  include Creatable::InstanceMethods
+  extend Findable::ClassMethods
+  extend Creatable::ClassMethods
   attr_accessor :name, :games
   @@all
 
@@ -10,5 +13,7 @@ class Console
   def self.all
     @@all
   end
+
+
 
 end

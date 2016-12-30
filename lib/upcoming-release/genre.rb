@@ -1,4 +1,7 @@
 class Genre
+  include Creatable::InstanceMethods
+  extend Findable::ClassMethods
+  extend Creatable::ClassMethods
   attr_accessor :name, :games
   @@all
 
