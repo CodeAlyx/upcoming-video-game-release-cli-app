@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require './game.rb'
 
 class Scraper
 
@@ -13,11 +12,16 @@ class Scraper
   end
 
   def self.create_game_hash(game)
+    console = Console.find_or_create_by_name(game.css("span.item-platform").text)
+    genres = []
+    game.css("span.item-genre").text.split(",").each do |genre|
+      genres << Genre.find_or_create_by_name(genre.strip)
+    end
     hash = {
       name: game.css("div.item-title a").text.strip,
       release_date: game.css("div.releaseDate").text.strip,
-      console: game.css("span.item-platform").text,
-      genre: game.css("span.item-genre").text.strip
+      console: console,
+      genre: genres
     }
   end
 

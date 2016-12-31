@@ -4,6 +4,7 @@ module Creatable
     def create(name)
       instance = self.new(name)
       instance.save
+      instance
     end
 
   end

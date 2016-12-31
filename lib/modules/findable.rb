@@ -3,7 +3,7 @@ module Findable
     def find_by_name(name)
       result = nil
       self.all.each do |item|
-        result = item if item.name.downcase == name.downcase
+        result = item if item.name.downcase.include?(name.downcase)
       end
       result
     end
